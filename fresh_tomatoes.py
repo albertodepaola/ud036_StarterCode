@@ -56,6 +56,13 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        h3 {
+            margin: 10px;
+        }
+        .summary-paragraph {
+            margin: 15px;
+        }
+        
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -67,6 +74,7 @@ main_page_head = '''
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.movie-tile', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var movieStoryline = $(this).attr('data-movie-storyline')
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
               'id': 'trailer-video',
@@ -74,6 +82,7 @@ main_page_head = '''
               'src': sourceUrl,
               'frameborder': 0
             }));
+            $("#movie-storyline").empty().text(movieStoryline);
         });
         // Animate in the movies when the page loads
         $(document).ready(function () {
@@ -98,6 +107,9 @@ main_page_content = '''
           </a>
           <div class="scale-media" id="trailer-video-container">
           </div>
+          <h3>Summary</h3>
+          <p id="movie-storyline" class="summary-paragraph"></p>
+          
         </div>
       </div>
     </div>
@@ -122,9 +134,10 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-movie-storyline="{movie_storyline}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    
 </div>
 '''
 
@@ -144,6 +157,7 @@ def create_movie_tiles_content(movies):
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
+            movie_storyline=movie.storyline,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id
         )
