@@ -12,3 +12,12 @@ cd movie_trailers;
 python enterteinment_center.py;
 ```
 
+# Udacity Identification
+The original Udacity project code for my user is ud036_StarterCode
+
+# License
+The content of this repository is licensed under a [Creative Commons Attribution License](https://creativecommons.org/licenses/by/3.0/us/)
+
+
+
+
