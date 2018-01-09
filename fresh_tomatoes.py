@@ -4,6 +4,7 @@ import re
 
 
 # Styles and scripting for the page
+# script provided by Udacity to facilitate development. Minor modifications made by albertodepaola@gmail.com.
 main_page_head = '''
 <!DOCTYPE html>
 <html lang="en">
